@@ -27,12 +27,30 @@ public class Principal {
         return op;
     }
 
-    private static void operacao(int op){
-        if(op==1) c.addCliente(JOptionPane.showInputDialog("Cadastrar nome de Cliente:"));
-        if(op==2)c.removerCliente(JOptionPane.showInputDialog("Qual o Cliente Que deseja remover:"));
-        if(op==3)c.qtddCliente();
-        if(op==4) c.mostrarLista();
-        if(op==5)JOptionPane.showMessageDialog(null,"Saindo Do Sistema");
+    private static void operacao(int op)
+    {
+        switch(op) {
+            case 1:
+                String clienteParaCadastrar = JOptionPane.showInputDialog("Cadastrar nome de Cliente:");
+                c.addCliente(clienteParaCadastrar);
+                break;
+            case 2:
+                String clienteParaRemover = JOptionPane.showInputDialog("Qual o Cliente Que deseja remover:");
+                c.removerCliente(clienteParaRemover);
+                break;
+            case 3:
+                c.qtddCliente();
+                break;
+            case 4:
+                c.mostrarLista();
+                break;
+            case 5:
+                JOptionPane.showMessageDialog(null, "Saindo Do Sistema");
+                break;
+            default:
+                JOptionPane.showMessageDialog(null, "Opção inválida!");
+                break;
+        }
     }
 }
 
