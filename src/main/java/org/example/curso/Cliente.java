@@ -15,36 +15,56 @@ public class Cliente {
         String ret="Quantidade de cliente cadastrado:\n";
         JOptionPane.showMessageDialog(null,ret+listaCliente.size());
     }
-    public void removerCliente(String nome){
-        String ret="Cliente foi Removido.";
-        if(!listaCliente.isEmpty()){
-        if(listaCliente.contains(nome)) {
-            listaCliente.remove(nome);
-            JOptionPane.showMessageDialog(null,ret);
-            qtddCliente();
-            ;
+    public void removerCliente(String nome)
+    {
+        if (listaEstaVazia() || !clienteExisteNaLista(nome)) {
+            return;
         }
-        }
-        JOptionPane.showMessageDialog(null,"Lista está vazio");
 
+        listaCliente.remove(nome);
+        JOptionPane.showMessageDialog(null, "Cliente foi Removido.");
+        qtddCliente();
     }
 
-    public void mostrarLista(){
-        if(!listaCliente.isEmpty()){
-        StringBuilder lista=new StringBuilder();
+    protected boolean clienteExisteNaLista(String nome)
+    {
+        if (listaCliente.contains(nome)) {
+            return true;
+        }
+
+        JOptionPane.showMessageDialog(null, "Cliente : " + nome + "não encontrado na lista.");
+        return false;
+    }
+
+    public void mostrarLista()
+    {
+        if (listaEstaVazia()) {
+            return;
+        }
+
+        StringBuilder lista = new StringBuilder();
         lista.append("Lista de Cliente:").append("\n");
         listaCliente.forEach(cliente ->lista.append(cliente).append("\n"));
         JOptionPane.showMessageDialog(null,lista.toString());
+    }
+
+    protected boolean listaEstaVazia()
+    {
+        if (!listaCliente.isEmpty()) {
+            return false;
         }
         JOptionPane.showMessageDialog(null,"Lista está vazio");
+        return true;
     }
 
 
-    public ArrayList<String> getListaCliente() {
+    public ArrayList<String> getListaCliente()
+    {
         return listaCliente;
     }
 
-    public void setListaCliente(ArrayList<String> listaCliente) {
+    public void setListaCliente(ArrayList<String> listaCliente)
+    {
         this.listaCliente = listaCliente;
     }
 }
